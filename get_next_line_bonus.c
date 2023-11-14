@@ -6,7 +6,7 @@
 /*   By: welow <welow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:38:28 by welow             #+#    #+#             */
-/*   Updated: 2023/11/10 17:52:43 by welow            ###   ########.fr       */
+/*   Updated: 2023/11/14 12:41:26 by welow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 	static char	*line[OPEN_MAX];
 	char		*next_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line[fd], 0) < 0)
 		return (NULL);
 	line[fd] = create_line(fd, line[fd]);
 	if (line[fd] == NULL)
@@ -104,24 +104,24 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-#include <stdio.h>
-int	main(void)
-{
-	int	fd1;
-	int fd2;
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	int	fd1;
+// 	int fd2;
 
-	fd1 = open("test.txt", O_RDONLY);
-	fd2 = open("test2.txt", O_RDONLY);
-	printf("%d| %s", fd1, get_next_line(fd1));
-	printf("%d| %s", fd2,  get_next_line(fd2));
-	printf("%d| %s", fd1, get_next_line(fd1));
-	printf("%d| %s", fd2,  get_next_line(fd2));
-	printf("%d| %s", fd1, get_next_line(fd1));
-	printf("%d| %s", fd2,  get_next_line(fd2));
-	printf("%d| %s", fd1, get_next_line(fd1));
-	printf("%d| %s", fd2,  get_next_line(fd2));
+// 	fd1 = open("test.txt", O_RDONLY);
+// 	fd2 = open("test2.txt", O_RDONLY);
+// 	printf("%d| %s", fd1, get_next_line(fd1));
+// 	printf("%d| %s", fd2,  get_next_line(fd2));
+// 	printf("%d| %s", fd1, get_next_line(fd1));
+// 	printf("%d| %s", fd2,  get_next_line(fd2));
+// 	printf("%d| %s", fd1, get_next_line(fd1));
+// 	printf("%d| %s", fd2,  get_next_line(fd2));
+// 	printf("%d| %s", fd1, get_next_line(fd1));
+// 	printf("%d| %s", fd2,  get_next_line(fd2));
 
-	close(fd1);
-	close(fd2);
-	return (0);
-} 
+// 	close(fd1);
+// 	close(fd2);
+// 	return (0);
+// } 
