@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welow <welow@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:43:05 by welow             #+#    #+#             */
-/*   Updated: 2023/11/02 12:38:57 by welow            ###   ########.fr       */
+/*   Updated: 2023/11/20 13:48:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	int		total_len;
 
-	if (s1 == 0 || s2 == 0)
-		return (0);
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	j = 0;
 	total_len = ft_strlen(s1) + ft_strlen(s2);

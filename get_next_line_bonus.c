@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:38:28 by welow             #+#    #+#             */
-/*   Updated: 2023/11/15 17:30:26 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/20 13:47:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,49 @@ char	*get_only_next_line(char *line)
 	return (line_with_nl);
 }
 
+// char	*new_line(char *line)
+// {
+// 	char	*start_line;
+// 	char	*str;
+
+// 	start_line = ft_strchr(line, '\n');
+// 	if (!start_line)
+// 	{
+// 		free(line);
+// 		return (NULL);
+// 	}
+// 	str = ft_substr(start_line + 1, 0, ft_strlen(start_line + 1));
+// 	free(line);
+// 	if (!str)
+// 	{
+// 		return (NULL);
+// 	}
+// 	return (str);
+// }
+
 char	*new_line(char *line)
 {
-	char	*start_line;
+	int		i;
+	int		j;
 	char	*str;
 
-	start_line = ft_strchr(line, '\n');
-	if (!start_line)
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	if (!line[i])
 	{
 		free(line);
 		return (NULL);
 	}
-	str = ft_substr(start_line + 1, 0, ft_strlen(start_line + 1));
-	free(line);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(line) - i + 1));
 	if (!str)
-	{
 		return (NULL);
-	}
+	i++;
+	j = 0;
+	while (line[i])
+		str[j++] = line[i++];
+	str[j] = '\0';
+	free(line);
 	return (str);
 }
 
