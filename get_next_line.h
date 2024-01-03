@@ -6,7 +6,7 @@
 /*   By: welow <welow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 21:27:26 by welow             #+#    #+#             */
-/*   Updated: 2023/11/10 18:02:25 by welow            ###   ########.fr       */
+/*   Updated: 2023/11/21 13:31:11 by welow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 /*get_next_line*/
+char	*ft_strjoin_free(char *line, char *buffer);
 char	*get_next_line(int fd);
 char	*create_line(int fd, char *line);
 char	*get_only_next_line(char *line);

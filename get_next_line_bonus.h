@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: welow <welow@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:39:32 by welow             #+#    #+#             */
-/*   Updated: 2023/11/15 17:30:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/11/21 13:31:39 by welow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 15
@@ -30,6 +29,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 /*get_next_line*/
+char	*ft_strjoin_free(char *line, char *buffer);
 char	*get_next_line(int fd);
 char	*create_line(int fd, char *line);
 char	*get_only_next_line(char *line);
