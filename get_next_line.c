@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: welow <welow@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*   By: welow < welow@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 15:00:57 by welow             #+#    #+#             */
-/*   Updated: 2023/11/21 13:00:09 by welow            ###   ########.fr       */
+/*   Updated: 2024/11/14 20:39:28 by welow            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/**
+ * @brief join line with the buffer size given line
+ * @param line line to be read
+ * @param buffer buffer to be read
+ * @return joined line and free the original line
+*/
 char	*ft_strjoin_free(char *line, char *buffer)
 {
 	char	*tmp;
@@ -21,6 +27,12 @@ char	*ft_strjoin_free(char *line, char *buffer)
 	return (tmp);
 }
 
+/**
+ * @brief create line with the buffer size given
+ * @param fd file descriptor from open file
+ * @param line line to be read
+ * @note 1. "read_byte" is set to 1 to prevent the loop stop
+*/
 char	*create_line(int fd, char *line)
 {
 	char	*buffer;
@@ -50,6 +62,11 @@ char	*create_line(int fd, char *line)
 	return (line);
 }
 
+/**
+ * @brief remove line after "\n" and return as "line with newline"
+ * @param line line to be read
+ * @return line with newline
+*/
 char	*get_only_next_line(char *line)
 {
 	int		i;
@@ -69,6 +86,12 @@ char	*get_only_next_line(char *line)
 	return (line_with_nl);
 }
 
+/**
+ * @brief remove line before "\n" and return as "new line"
+ * @param line line to be read
+ * @return new line
+ * @note 1. if found new line after "\n", copy the line to "str"
+*/
 char	*new_line(char *line)
 {
 	int		i;
@@ -95,6 +118,14 @@ char	*new_line(char *line)
 	return (str);
 }
 
+/**
+ * @brief read and return line from file descriptor
+ * @param fd file descriptor from open file
+ * @return line that read from file descriptor
+ * @note 1. if no fd, fail buffer size, fail to read, return NULL
+ * @note 2. after the "new_line" created, return the line to the "create_line" again
+ *
+*/
 char	*get_next_line(int fd)
 {
 	static char	*line;
