@@ -32,6 +32,9 @@ char	*ft_strjoin_free(char *line, char *buffer)
  * @param fd file descriptor from open file
  * @param line line to be read
  * @note 1. "read_byte" is set to 1 to prevent the loop stop
+ * @note 2. "line[0] = '\0';" make your line is a valid string
+ *	    example: line: '\0' able to strjoin with string
+ *		     line: NULL unable to strjoin with string
 */
 char	*create_line(int fd, char *line)
 {
