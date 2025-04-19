@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
 /**
  * @brief join line with the buffer size given line
@@ -32,6 +33,9 @@ char	*ft_strjoin_free(char *line, char *buffer)
  * @param fd file descriptor from open file
  * @param line line to be read
  * @note 1. "read_byte" is set to 1 to prevent the loop stop
+ * @note 2. "line[0] = '\0';" make your line is a valid string
+ *	    example: line: '\0' able to strjoin with string
+ *		     line: NULL unable to strjoin with string
 */
 char	*create_line(int fd, char *line)
 {
@@ -40,14 +44,15 @@ char	*create_line(int fd, char *line)
 
 	if (!line)
 	{
-		line = malloc(1);
-		line[0] = '\0';
+		// line = malloc(1);
+		// line[0] = '\0';
+		line = strdup("");
 	}
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
 	read_byte = 1;
-	while (!ft_strchr(line, '\n') && read_byte != 0)
+	while (read_byte > 0)
 	{
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 		if (read_byte == -1)
@@ -57,6 +62,8 @@ char	*create_line(int fd, char *line)
 		}
 		buffer[read_byte] = '\0';
 		line = ft_strjoin_free(line, buffer);
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
 	free(buffer);
 	return (line);
@@ -139,4 +146,23 @@ char	*get_next_line(int fd)
 	next_line = get_only_next_line(line);
 	line = new_line(line);
 	return (next_line);
+}
+
+#include <stdio.h>
+int main()
+{
+	int fd;
+	char *line;
+
+	fd = open("test.txt", O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	return (0);
 }
